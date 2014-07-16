@@ -3,7 +3,7 @@
 
 	<groupId>com.jejking</groupId>
 	<artifactId>rxosmparser</artifactId>
-	<version>0.0.2-SNAPSHOT</version>
+	<version>0.0.2</version>
 	<packaging>jar</packaging>
 
 	<name>Rx Osm Parser</name>
@@ -29,7 +29,8 @@
 
 	<scm>
 		<developerConnection>scm:git:https://github.com/jejking/RxOsmParser.git</developerConnection>
-    </scm>
+      <tag>v0.0.2</tag>
+  </scm>
 
 	<dependencies>
 		<dependency>
