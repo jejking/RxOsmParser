@@ -7,7 +7,7 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>Reactive Osm Parser</name>
+	<name>Rx Osm Parser</name>
 	<url>http://maven.apache.org</url>
 
 	<properties>
@@ -35,7 +35,7 @@
         <dependency>
 			<groupId>com.netflix.rxjava</groupId>
 			<artifactId>rxjava-core</artifactId>
-			<version>0.18.3</version>
+			<version>0.19.6</version>
 		</dependency>
         <dependency>
 			<groupId>org.apache.commons</groupId>
@@ -52,10 +52,6 @@
 	</dependencies>
 
 	<repositories>
-		<repository>
-			<id>neo4j-releases</id>
-			<url>http://m2.neo4j.org/releases/</url>
-		</repository>
 		<repository>
 			<id>maven2-repository.dev.java.net</id>
 			<name>Java.net repository</name>
@@ -74,25 +70,5 @@
 			<name>OpenGeo Maven Repository</name>
 			<url>http://repo.opengeo.org</url>
 		</repository>
-		<repository>
-            <id>neo4j-contrib-releases</id>
-            <url>https://raw.github.com/neo4j-contrib/m2/master/releases</url>
-            <releases>
-                <enabled>true</enabled>
-            </releases>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-        </repository>
-        <repository>
-            <id>neo4j-contrib-snapshots</id>
-            <url>https://raw.github.com/neo4j-contrib/m2/master/snapshots</url>
-            <releases>
-                <enabled>false</enabled>
-            </releases>
-            <snapshots>
-                <enabled>true</enabled>
-            </snapshots>
-        </repository>
 	</repositories>
 </project>
