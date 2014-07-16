@@ -26,9 +26,9 @@ import com.vividsolutions.jts.geom.Point;
 
 /**
  * Value class to represent an Open Street Map node.
- * 
- * @author jejking
  *
+ * @author jejking
+ * @version $Id: $Id
  */
 public final class OsmNode extends OsmComponent {
 
@@ -36,11 +36,11 @@ public final class OsmNode extends OsmComponent {
     
     /**
      * Constructor. No argument may be <code>null</code>.
-     * 
+     *
      * @param metadata metadata
      * @param properties properties
      * @param point geometry constructed from the <tt>lat</tt> and <tt>lon</tt> attributes
-     * @throws NullPointerException if any argument is <code>null</code>
+     * @throws java.lang.NullPointerException if any argument is <code>null</code>
      */
     public OsmNode(OsmMetadata metadata, ImmutableMap<String, String> properties, Point point) {
         super(metadata, properties);
@@ -50,6 +50,8 @@ public final class OsmNode extends OsmComponent {
 
 
     /**
+     * <p>Getter for the field <code>point</code>.</p>
+     *
      * @return the point
      */
     public Point getPoint() {
@@ -61,6 +63,7 @@ public final class OsmNode extends OsmComponent {
     /* (non-Javadoc)
      * @see java.lang.Object#toString()
      */
+    /** {@inheritDoc} */
     @Override
     public String toString() {
         return "OsmNode [point=" + point + ", toString()=" + super.toString() + "]";

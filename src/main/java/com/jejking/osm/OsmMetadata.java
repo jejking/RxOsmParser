@@ -23,34 +23,52 @@ import org.joda.time.DateTime;
 
 import com.google.common.base.Optional;
 
+/**
+ * <p>OsmMetadata interface.</p>
+ *
+ * @author jejking
+ * @version $Id: $Id
+ */
 public interface OsmMetadata {
 
     /**
+     * <p>getId.</p>
+     *
      * @return the id
      */
     public abstract Long getId();
 
     /**
+     * <p>getTimestamp.</p>
+     *
      * @return the timestamp
      */
     public abstract Optional<DateTime> getTimestamp();
 
     /**
+     * <p>getChangeset.</p>
+     *
      * @return the changeset
      */
     public abstract Optional<Long> getChangeset();
 
     /**
+     * <p>getUid.</p>
+     *
      * @return the uid
      */
     public abstract Optional<Long> getUid();
 
     /**
+     * <p>getUser.</p>
+     *
      * @return the user
      */
     public abstract Optional<String> getUser();
     
     /**
+     * <p>getVersion.</p>
+     *
      * @return the version
      */
     public abstract Optional<Long> getVersion();

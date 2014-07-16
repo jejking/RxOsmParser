@@ -28,21 +28,21 @@ import static com.google.common.base.Preconditions.checkNotNull;
 /**
  * Value class representing an Open Street Map <code>way</code>, but
  * with <code>nd ref</code> attributes replaced with object references.
- * 
- * @author jejking
  *
+ * @author jejking
+ * @version $Id: $Id
  */
 public final class OsmWay extends OsmComponent {
 
     private final ImmutableList<Long> ndRefs;
 
     /**
-     * Constructor. No property may be null - if not present, use {@link Optional#absent()}.
-     * 
-     * @param metadata
-     * @param properties
+     * Constructor. No property may be null - if not present, use {@link com.google.common.base.Optional#absent()}.
+     *
+     * @param metadata a {@link com.jejking.osm.OsmMetadata} object.
+     * @param properties a {@link com.google.common.collect.ImmutableMap} object.
      * @param ndRefs values of <tt>ref</tt> attributes of <tt>nd</tt> elements
-     * @throws NullPointerException if any parameter is <code>null</code>
+     * @throws java.lang.NullPointerException if any parameter is <code>null</code>
      */
     public OsmWay(OsmMetadata metadata, ImmutableMap<String, String> properties, 
             ImmutableList<Long> ndRefs) {
@@ -52,6 +52,8 @@ public final class OsmWay extends OsmComponent {
 
     
     /**
+     * <p>Getter for the field <code>ndRefs</code>.</p>
+     *
      * @return the ndRefs
      */
     public ImmutableList<Long> getNdRefs() {
@@ -62,6 +64,7 @@ public final class OsmWay extends OsmComponent {
     /* (non-Javadoc)
      * @see java.lang.Object#toString()
      */
+    /** {@inheritDoc} */
     @Override
     public String toString() {
         return "OsmWay [ndRefs=" + ndRefs + ", " + super.toString() + "]";

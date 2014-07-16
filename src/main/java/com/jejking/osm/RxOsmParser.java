@@ -55,16 +55,16 @@ import com.vividsolutions.jts.geom.GeometryFactory;
 import com.vividsolutions.jts.geom.Point;
 
 /**
- * Streaming parser for Open Street Map XML that exposes Rx {@link Observable}s for the underlying
+ * Streaming parser for Open Street Map XML that exposes Rx {@link rx.Observable}s for the underlying
  * objects encoded as XML in the input stream.
- * 
- * <p>Usage: construct the class, passing an input stream as a parameter. Attach subscribers
- * or observers to the {@link Observable} instances exposed for each basic Open Street Map type.
- * Then call the {@link RxOsmParser#parseOsmStream()} method - this connects to each observer
- * in the right order (node, then way, then relation) as determined by the OSM XML conventions.
- *  
- * @author jejking
  *
+ * <p>Usage: construct the class, passing an input stream as a parameter. Attach subscribers
+ * or observers to the {@link rx.Observable} instances exposed for each basic Open Street Map type.
+ * Then call the {@link com.jejking.osm.RxOsmParser#parseOsmStream()} method - this connects to each observer
+ * in the right order (node, then way, then relation) as determined by the OSM XML conventions.
+ *
+ * @author jejking
+ * @version $Id: $Id
  */
 public class RxOsmParser  {
 
@@ -78,6 +78,11 @@ public class RxOsmParser  {
 	private final XMLEventReader filtered;
 	private final InputStream inputStream;
 	
+	/**
+	 * <p>Constructor for RxOsmParser.</p>
+	 *
+	 * @param inputStream a {@link java.io.InputStream} object.
+	 */
 	public RxOsmParser(InputStream inputStream) {
 		
 		this.inputStream = checkNotNull(inputStream);
@@ -116,25 +121,38 @@ public class RxOsmParser  {
 		};
 	}
 
+	/**
+	 * <p>Getter for the field <code>nodeObservable</code>.</p>
+	 *
+	 * @return a {@link rx.Observable} object.
+	 */
 	public Observable<OsmNode> getNodeObservable() {
 		return this.nodeObservable;
 	}
 
 	
+	/**
+	 * <p>Getter for the field <code>wayObservable</code>.</p>
+	 *
+	 * @return a {@link rx.Observable} object.
+	 */
 	public Observable<OsmWay> getWayObservable() {
 		return this.wayObservable;
 	}
 
+	/**
+	 * <p>Getter for the field <code>relationObservable</code>.</p>
+	 *
+	 * @return a {@link rx.Observable} object.
+	 */
 	public Observable<OsmRelation> getRelationObservable() {
 		return this.relationObservable;
 	}
 	
 
-	/**
-     * Parses the XML, notifying the relevant {@link SimpleObservable} instances
+    /**
+     * Parses the XML, notifying the relevant {@link Observable} instances
      * as each relevant element is completely parsed.
-     * 
-     * @param inputStream stream containing OpenStreetMap XML, should not be <code>null</code>
      */
     public void parseOsmStream() {
 

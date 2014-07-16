@@ -26,61 +26,85 @@ import com.google.common.collect.ImmutableMap;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
+/**
+ * <p>Abstract OsmComponent class.</p>
+ *
+ * @author jejking
+ * @version $Id: $Id
+ */
 public abstract class OsmComponent implements OsmMetadata, OsmProperties {
 
     private final OsmMetadata metadata;
     private final ImmutableMap<String, String> properties;
     
+    /**
+     * <p>Constructor for OsmComponent.</p>
+     *
+     * @param metadata a {@link com.jejking.osm.OsmMetadata} object.
+     * @param properties a {@link com.google.common.collect.ImmutableMap} object.
+     */
     public OsmComponent(OsmMetadata metadata, ImmutableMap<String, String> properties) {
         this.metadata = checkNotNull(metadata);
         this.properties = checkNotNull(properties);
     }
     
+    /** {@inheritDoc} */
     @Override
     public final ImmutableMap<String, String> getProperties() {
         return this.properties;
     }
 
     /**
-     * @return
+     * <p>getId.</p>
+     *
      * @see com.jejking.osm.OsmMetadata#getId()
+     * @return a {@link java.lang.Long} object.
      */
     public final Long getId() {
         return metadata.getId();
     }
 
     /**
-     * @return
+     * <p>getTimestamp.</p>
+     *
      * @see com.jejking.osm.OsmMetadata#getTimestamp()
+     * @return a {@link com.google.common.base.Optional} object.
      */
     public final Optional<DateTime> getTimestamp() {
         return metadata.getTimestamp();
     }
 
     /**
-     * @return
+     * <p>getChangeset.</p>
+     *
      * @see com.jejking.osm.OsmMetadata#getChangeset()
+     * @return a {@link com.google.common.base.Optional} object.
      */
     public final Optional<Long> getChangeset() {
         return metadata.getChangeset();
     }
 
     /**
-     * @return
+     * <p>getUid.</p>
+     *
      * @see com.jejking.osm.OsmMetadata#getUid()
+     * @return a {@link com.google.common.base.Optional} object.
      */
     public final Optional<Long> getUid() {
         return metadata.getUid();
     }
 
     /**
-     * @return
+     * <p>getUser.</p>
+     *
      * @see com.jejking.osm.OsmMetadata#getUser()
+     * @return a {@link com.google.common.base.Optional} object.
      */
     public final Optional<String> getUser() {
         return metadata.getUser();
     }
 
+    /** {@inheritDoc} */
     @Override
     public final Optional<Long> getVersion() {
         return metadata.getVersion();
@@ -89,6 +113,7 @@ public abstract class OsmComponent implements OsmMetadata, OsmProperties {
     /* (non-Javadoc)
      * @see java.lang.Object#toString()
      */
+    /** {@inheritDoc} */
     @Override
     public String toString() {
         return "OsmComponent [metadata=" + metadata + ", properties=" + properties + "]";

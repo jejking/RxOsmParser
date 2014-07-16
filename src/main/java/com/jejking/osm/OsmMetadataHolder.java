@@ -28,9 +28,9 @@ import static com.google.common.base.Preconditions.checkNotNull;
 /**
  * Abstract value class holding attributes shared by nodes, ways and relations
  * as found in Open Street Map .osm XML files.
- *  
- * @author jejking
  *
+ * @author jejking
+ * @version $Id: $Id
  */
 public final class OsmMetadataHolder implements OsmMetadata {
 
@@ -42,15 +42,15 @@ public final class OsmMetadataHolder implements OsmMetadata {
     private final Optional<String> user;
     
     /**
-     * Constructor. No property may be null - if not present, use {@link Optional#absent()}.
-     * 
+     * Constructor. No property may be null - if not present, use {@link com.google.common.base.Optional#absent()}.
+     *
      * @param id numerical identifier, corresponds to the <tt>id</tt> attribute.
      * @param version value of the <tt>version</tt> attribute, if present
      * @param timestamp value of the <tt>timestamp</tt> attribute, if present
      * @param changeset value of the <tt>changeset</tt> attribute, if present
      * @param uid value of the <tt>uid</tt> attribute if present
      * @param user value of the <tt>user</tt> attribute if present.
-     * @throws NullPointerException if any argument is <code>null</code>
+     * @throws java.lang.NullPointerException if any argument is <code>null</code>
      */
     public OsmMetadataHolder(Long id, Optional<Long> version,
             Optional<DateTime> timestamp, Optional<Long> changeset, Optional<Long> uid, Optional<String> user) {
@@ -69,6 +69,7 @@ public final class OsmMetadataHolder implements OsmMetadata {
     /* (non-Javadoc)
      * @see com.jejking.osm.OsmMetadata#getId()
      */
+    /** {@inheritDoc} */
     @Override
     public Long getId() {
         return id;
@@ -78,6 +79,8 @@ public final class OsmMetadataHolder implements OsmMetadata {
     
      
     /**
+     * <p>Getter for the field <code>version</code>.</p>
+     *
      * @return the version
      */
     public Optional<Long> getVersion() {
@@ -89,6 +92,7 @@ public final class OsmMetadataHolder implements OsmMetadata {
     /* (non-Javadoc)
      * @see com.jejking.osm.OsmMetadata#getTimestamp()
      */
+    /** {@inheritDoc} */
     @Override
     public Optional<DateTime> getTimestamp() {
         return timestamp;
@@ -99,6 +103,7 @@ public final class OsmMetadataHolder implements OsmMetadata {
     /* (non-Javadoc)
      * @see com.jejking.osm.OsmMetadata#getChangeset()
      */
+    /** {@inheritDoc} */
     @Override
     public Optional<Long> getChangeset() {
         return changeset;
@@ -109,6 +114,7 @@ public final class OsmMetadataHolder implements OsmMetadata {
     /* (non-Javadoc)
      * @see com.jejking.osm.OsmMetadata#getUid()
      */
+    /** {@inheritDoc} */
     @Override
     public Optional<Long> getUid() {
         return uid;
@@ -119,6 +125,7 @@ public final class OsmMetadataHolder implements OsmMetadata {
     /* (non-Javadoc)
      * @see com.jejking.osm.OsmMetadata#getUser()
      */
+    /** {@inheritDoc} */
     @Override
     public Optional<String> getUser() {
         return user;
@@ -129,6 +136,7 @@ public final class OsmMetadataHolder implements OsmMetadata {
     /* (non-Javadoc)
      * @see java.lang.Object#hashCode()
      */
+    /** {@inheritDoc} */
     @Override
     public int hashCode() {
         final int prime = 31;
@@ -147,6 +155,7 @@ public final class OsmMetadataHolder implements OsmMetadata {
     /* (non-Javadoc)
      * @see java.lang.Object#equals(java.lang.Object)
      */
+    /** {@inheritDoc} */
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
@@ -210,6 +219,7 @@ public final class OsmMetadataHolder implements OsmMetadata {
     /* (non-Javadoc)
      * @see java.lang.Object#toString()
      */
+    /** {@inheritDoc} */
     @Override
     public String toString() {
         return "OsmMetadataHolder [id=" + id + ", version=" + version + ", timestamp="

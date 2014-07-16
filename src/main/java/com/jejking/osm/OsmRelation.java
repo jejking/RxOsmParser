@@ -29,9 +29,9 @@ import com.google.common.collect.ImmutableMap;
 
 /**
  * Value class representing a <tt>relation</tt> element in an OSM file.
- * 
- * @author jejking
  *
+ * @author jejking
+ * @version $Id: $Id
  */
 public final class OsmRelation extends OsmComponent {
 
@@ -39,13 +39,12 @@ public final class OsmRelation extends OsmComponent {
     
     
     /**
-     * Constructor. No property may be null - if not present, use {@link Optional#absent()}.
-     * 
-     * @param metadata
-     * @param properties
+     * Constructor. No property may be null - if not present, use {@link com.google.common.base.Optional#absent()}.
+     *
+     * @param metadata a {@link com.jejking.osm.OsmMetadata} object.
+     * @param properties a {@link com.google.common.collect.ImmutableMap} object.
      * @param members mapping of the <tt>member</tt> subelements
-     * 
-     * @throws NullPointerException if any parameter is <code>null</code>
+     * @throws java.lang.NullPointerException if any parameter is <code>null</code>
      */
     public OsmRelation(OsmMetadata metadata, ImmutableMap<String, String> properties,
             ImmutableList<Member> members) {
@@ -55,7 +54,7 @@ public final class OsmRelation extends OsmComponent {
 
     /**
      * Returns members.
-     * 
+     *
      * @return members.
      */
     public ImmutableList<Member> getMembers() {

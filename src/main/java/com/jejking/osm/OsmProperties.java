@@ -22,14 +22,16 @@ package com.jejking.osm;
 import com.google.common.collect.ImmutableMap;
 
 /**
- * Simple interface to give type safe, immutable view 
+ * Simple interface to give type safe, immutable view
  * on to key-value string pairs.
- * @author jejking
  *
+ * @author jejking
+ * @version $Id: $Id
  */
 public interface OsmProperties {
 
     /**
+     * <p>getProperties.</p>
      *
      * @return key value pairs, may be empty, never <code>null</code>
      */

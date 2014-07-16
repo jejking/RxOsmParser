@@ -21,8 +21,9 @@ package com.jejking.osm;
 
 /**
  * Simple value class representing a string key-value pair. Correponds to "tag" element.
- * @author jejking
  *
+ * @author jejking
+ * @version $Id: $Id
  */
 public final class OsmTag {
 
@@ -31,8 +32,9 @@ public final class OsmTag {
     
     /**
      * Key value pair.
-     * @param key 
-     * @param value
+     *
+     * @param key a {@link java.lang.String} object.
+     * @param value a {@link java.lang.String} object.
      */
     public OsmTag(String key, String value) {
         super();
@@ -41,6 +43,8 @@ public final class OsmTag {
     }
     
     /**
+     * <p>Getter for the field <code>key</code>.</p>
+     *
      * @return the key
      */
     public String getKey() {
@@ -48,6 +52,8 @@ public final class OsmTag {
     }
     
     /**
+     * <p>Getter for the field <code>value</code>.</p>
+     *
      * @return the value
      */
     public String getValue() {
