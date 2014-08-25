@@ -6,31 +6,38 @@
 	<version>0.0.3-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>Rx Osm Parser</name>
-	<url>http://maven.apache.org</url>
+	<name>${project.groupId}:${project.artifactId}</name>
+    <description>An Open Street Map XML parser that exposes observable streams of nodes, ways and relations to which
+                 clients can subscribe.</description>
+	<url>https://github.com/jejking/RxOsmParser</url>
+    <licenses>
+        <license>
+            <name>The GNU General Public License, Version 3</name>
+            <url>http://www.gnu.org/copyleft/gpl.html</url>
+        </license>
+    </licenses>
+
+    <developers>
+        <developer>
+            <name>John E. J. King</name>
+            <email>rxosmparser@jejking.com</email>
+            <organization>Self</organization>
+            <organizationUrl>https://github.com/jejking</organizationUrl>
+        </developer>
+    </developers>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<maven.compiler.source>1.7</maven.compiler.source>
 		<maven.compiler.target>1.7</maven.compiler.target>
-	    <!-- github server corresponds to entry in ~/.m2/settings.xml
-	    <settings>
-  			<servers>
-    			<server>
-      				<id>github</id>
-      				<username>YOUR-GITHUB-USERNAME</username>
-      				<password>YOUR-GITHUB-PASSWORD</password>
-    			</server>
-  			</servers>
-		</settings>
-	     -->
-	    <github.global.server>github</github.global.server>
 	</properties>
 
 	<scm>
+        <connection>scm:git:https://github.com/jejking/RxOsmParser.git</connection>
 		<developerConnection>scm:git:https://github.com/jejking/RxOsmParser.git</developerConnection>
-      <tag>HEAD</tag>
-  </scm>
+        <url>https://github.com/jejking/RxOsmParser</url>
+        <tag>HEAD</tag>
+    </scm>
 
 	<dependencies>
 		<dependency>
@@ -51,13 +58,8 @@
         <dependency>
 			<groupId>com.netflix.rxjava</groupId>
 			<artifactId>rxjava-core</artifactId>
-			<version>0.19.6</version>
+			<version>0.20.0</version>
 		</dependency>
-        <dependency>
-			<groupId>org.apache.commons</groupId>
-			<artifactId>commons-compress</artifactId>
-			<version>1.8</version>
-		</dependency>        
         <dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
@@ -67,126 +69,97 @@
 	</dependencies>
 
 	<build>
-	<!-- ..
-	 <plugins>
-	    <plugin>
-	        <artifactId>maven-deploy-plugin</artifactId>
-	        <version>2.8.1</version>
-	        <configuration>
-	               <altDeploymentRepository>internal.repo::default::file://${project.build.directory}/mvn-repo</altDeploymentRepository>
-	        </configuration>
-	    </plugin>
-	 </plugins>
-	 -->
-	 <pluginManagement>
-      <plugins>
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-source-plugin</artifactId>
-          <version>2.0.4</version>
-        </plugin>
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-javadoc-plugin</artifactId>
-          <version>2.9.1</version>
-        </plugin>
-      </plugins>
-    </pluginManagement>
     <plugins>
         <plugin>
-            <groupId>com.github.github</groupId>
-            <artifactId>site-maven-plugin</artifactId>
-            <version>0.9</version>
-            <configuration>
-                <message>Maven artifacts for ${project.version}</message>  <!-- git commit message -->
-                <noJekyll>true</noJekyll>                                  <!-- disable webpage processing -->
-                <outputDirectory>${project.build.directory}/mvn-repo</outputDirectory> <!-- matches distribution management repository url above -->
-                <branch>refs/heads/mvn-repo</branch>                       <!-- remote branch name -->
-                <includes><include>**/*</include></includes>
-                <repositoryName>RxOsmParser</repositoryName>      <!-- github repo name -->
-                <repositoryOwner>jejking</repositoryOwner>    <!-- github username  -->
-		<merge>true</merge>
-            </configuration>
-            <executions>
-              <!-- run site-maven-plugin's 'site' target as part of the build's normal 'deploy' phase -->
-              <execution>
-                <goals>
-                  <goal>site</goal>
-                </goals>
-                <phase>deploy</phase>
-              </execution>
-            </executions>
-        </plugin>
-        <plugin>
 	        <artifactId>maven-deploy-plugin</artifactId>
 	        <version>2.8.1</version>
-	        <configuration>
-	               <altDeploymentRepository>internal.repo::default::file://${project.build.directory}/mvn-repo</altDeploymentRepository>
-	        </configuration>
 	    </plugin>
-	    <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-source-plugin</artifactId>
-        <executions>
-          <execution>
-            <id>attach-sources</id>
-            <goals>
-              <goal>jar</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-javadoc-plugin</artifactId>
-        <executions>
-          <execution>
-            <id>attach-javadocs</id>
-            <goals>
-              <goal>jar</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
 	  <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-release-plugin</artifactId>
         <version>2.5</version>
         <configuration>
-          <tagNameFormat>v@{project.version}</tagNameFormat>
+            <tagNameFormat>v@{project.version}</tagNameFormat>
+            <autoVersionSubmodules>true</autoVersionSubmodules>
+            <useReleaseProfile>false</useReleaseProfile>
+            <releaseProfiles>release</releaseProfiles>
+            <goals>deploy</goals>
         </configuration>
       </plugin>
     </plugins>
     
 	</build>
 
+    <profiles>
+        <profile>
+            <id>release</id>
+            <build>
+                <pluginManagement>
+                    <plugins>
+                        <plugin>
+                            <groupId>org.apache.maven.plugins</groupId>
+                            <artifactId>maven-source-plugin</artifactId>
+                            <version>2.3</version>
+                        </plugin>
+                        <plugin>
+                            <groupId>org.apache.maven.plugins</groupId>
+                            <artifactId>maven-javadoc-plugin</artifactId>
+                            <version>2.9.1</version>
+                        </plugin>
+                    </plugins>
+                </pluginManagement>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-gpg-plugin</artifactId>
+                        <version>1.5</version>
+                        <executions>
+                            <execution>
+                                <id>sign-artifacts</id>
+                                <phase>verify</phase>
+                                <goals>
+                                    <goal>sign</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <artifactId>maven-source-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>attach-sources</id>
+                                <goals>
+                                    <goal>jar-no-fork</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <artifactId>maven-javadoc-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>attach-javadocs</id>
+                                <goals>
+                                    <goal>jar</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+
 
 	<distributionManagement>
-    	<repository>
-	        <id>internal.repo</id>
-	        <name>Temporary Staging Repository</name>
-	        <url>file://${project.build.directory}/mvn-repo</url>
-	    	</repository>
+        <repository>
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+        </repository>
+        <snapshotRepository>
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+        </snapshotRepository>
 	</distributionManagement>
 
-	<repositories>
-		<repository>
-			<id>maven2-repository.dev.java.net</id>
-			<name>Java.net repository</name>
-			<url>http://download.java.net/maven/2</url>
-		</repository>
-		<repository>
-			<id>osgeo</id>
-			<name>Open Source Geospatial Foundation Repository</name>
-			<url>http://download.osgeo.org/webdav/geotools/</url>
-		</repository>
-		<repository>
-			<snapshots>
-				<enabled>true</enabled>
-			</snapshots>
-			<id>opengeo</id>
-			<name>OpenGeo Maven Repository</name>
-			<url>http://repo.opengeo.org</url>
-		</repository>
-	</repositories>
 </project>
