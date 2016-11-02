@@ -35,6 +35,6 @@ public interface OsmProperties {
      *
      * @return key value pairs, may be empty, never <code>null</code>
      */
-    public ImmutableMap<String, String> getProperties();
+    ImmutableMap<String, String> getProperties();
     
 }

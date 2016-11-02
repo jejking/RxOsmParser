@@ -35,10 +35,9 @@ import java.util.Optional;
 public final class OsmRelation extends OsmComponent {
 
     private final ImmutableList<Member> members;
-    
-    
+
     /**
-     * Constructor. No property may be null - if not present, use {@link com.google.common.base.Optional#absent()}.
+     * Constructor. No property may be <code>null</code> - if not present, use {@link Optional#empty()}.
      *
      * @param metadata a {@link com.jejking.osm.OsmMetadata} object.
      * @param properties a {@link com.google.common.collect.ImmutableMap} object.
@@ -88,10 +87,6 @@ public final class OsmRelation extends OsmComponent {
         }
 
         
-        
-        
-        
-        
         /**
          * @return the type
          */
@@ -100,10 +95,6 @@ public final class OsmRelation extends OsmComponent {
         }
 
 
-
-
-
-        
         /**
          * @return the ref
          */
@@ -111,21 +102,12 @@ public final class OsmRelation extends OsmComponent {
             return ref;
         }
 
-
-
-
-
-        
         /**
          * @return the role
          */
         public Optional<String> getRole() {
             return role;
         }
-
-
-
-
 
         /* (non-Javadoc)
          * @see java.lang.Object#hashCode()
@@ -182,9 +164,7 @@ public final class OsmRelation extends OsmComponent {
         public String toString() {
             return "Member [type=" + type + ", ref=" + ref + ", role=" + role + "]";
         }
-        
-        
-        
+
     }
     
 }

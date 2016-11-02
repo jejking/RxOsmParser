@@ -35,41 +35,41 @@ public interface OsmMetadata {
      *
      * @return the id
      */
-    public abstract Long getId();
+    Long getId();
 
     /**
      * <p>getTimestamp.</p>
      *
      * @return the timestamp
      */
-    public abstract Optional<ZonedDateTime> getTimestamp();
+    Optional<ZonedDateTime> getTimestamp();
 
     /**
      * <p>getChangeset.</p>
      *
      * @return the changeset
      */
-    public abstract Optional<Long> getChangeset();
+    Optional<Long> getChangeset();
 
     /**
      * <p>getUid.</p>
      *
      * @return the uid
      */
-    public abstract Optional<Long> getUid();
+    Optional<Long> getUid();
 
     /**
      * <p>getUser.</p>
      *
      * @return the user
      */
-    public abstract Optional<String> getUser();
+    Optional<String> getUser();
     
     /**
      * <p>getVersion.</p>
      *
      * @return the version
      */
-    public abstract Optional<Long> getVersion();
+    Optional<Long> getVersion();
 
 }

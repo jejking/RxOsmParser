@@ -19,13 +19,15 @@
  */
 package com.jejking.osm;
 
+import com.google.common.collect.ImmutableMap;
+
 /**
- * Simple value class representing a string key-value pair. Correponds to "tag" element.
+ * Simple value class representing a string key-value pair. Corresponds to "tag" element.
  *
  * @author jejking
  * @version $Id: $Id
  */
-public final class OsmTag {
+public final class OsmTag implements OsmProperties {
 
     private final String key;
     private final String value;
@@ -59,7 +61,10 @@ public final class OsmTag {
     public String getValue() {
         return value;
     }
-    
-    
-    
+
+
+    @Override
+    public ImmutableMap<String, String> getProperties() {
+        return ImmutableMap.of(key, value);
+    }
 }

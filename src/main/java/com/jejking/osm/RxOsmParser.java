@@ -95,7 +95,6 @@ public class RxOsmParser  {
             this.wayObservable = fromIterable(fromIterator(wayIterator));
             this.relationObservable = fromIterable(fromIterator(relationIterator));
             
-            
         } catch (XMLStreamException e) {
             throw new RuntimeException(e);
         }
@@ -109,13 +108,7 @@ public class RxOsmParser  {
 
 
 	private <T> Iterable<T> fromIterator(final Iterator<T> iterator) {
-		return new Iterable<T>() {
-
-			@Override
-			public Iterator<T> iterator() {
-				return iterator;
-			}
-		};
+		return () -> iterator;
 	}
 
 	/**
@@ -210,7 +203,7 @@ public class RxOsmParser  {
  
     
     /**
-     * Gathers together functionality to build an iterator of higher level types
+     * Gathers together functionality to build an iterator of domain-related types
      * out of an xml event stream.
      *  
      * @param <T>

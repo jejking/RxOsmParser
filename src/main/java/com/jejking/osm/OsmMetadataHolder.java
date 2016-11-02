@@ -41,7 +41,7 @@ public final class OsmMetadataHolder implements OsmMetadata {
     private final Optional<String> user;
     
     /**
-     * Constructor. No property may be null - if not present, use {@link com.google.common.base.Optional#absent()}.
+     * Constructor. No property may be null - if not present, use {@link Optional#empty()}s.
      *
      * @param id numerical identifier, corresponds to the <tt>id</tt> attribute.
      * @param version value of the <tt>version</tt> attribute, if present
