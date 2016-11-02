@@ -20,10 +20,8 @@
 package com.jejking.osm;
 
 import static com.google.common.base.Preconditions.checkNotNull;
-import static java.time.ZoneOffset.UTC;
 
 import java.io.InputStream;
-import java.time.LocalDateTime;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Iterator;
