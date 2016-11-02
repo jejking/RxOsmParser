@@ -19,9 +19,8 @@
  */
 package com.jejking.osm;
 
-import org.joda.time.DateTime;
-
-import com.google.common.base.Optional;
+import java.time.ZonedDateTime;
+import java.util.Optional;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
@@ -36,7 +35,7 @@ public final class OsmMetadataHolder implements OsmMetadata {
 
     private final Long id;
     private final Optional<Long> version;
-    private final Optional<DateTime> timestamp;
+    private final Optional<ZonedDateTime> timestamp;
     private final Optional<Long> changeset;
     private final Optional<Long> uid;
     private final Optional<String> user;
@@ -53,7 +52,7 @@ public final class OsmMetadataHolder implements OsmMetadata {
      * @throws java.lang.NullPointerException if any argument is <code>null</code>
      */
     public OsmMetadataHolder(Long id, Optional<Long> version,
-            Optional<DateTime> timestamp, Optional<Long> changeset, Optional<Long> uid, Optional<String> user) {
+            Optional<ZonedDateTime> timestamp, Optional<Long> changeset, Optional<Long> uid, Optional<String> user) {
         super();
         
         this.id = checkNotNull(id);
@@ -94,7 +93,7 @@ public final class OsmMetadataHolder implements OsmMetadata {
      */
     /** {@inheritDoc} */
     @Override
-    public Optional<DateTime> getTimestamp() {
+    public Optional<ZonedDateTime> getTimestamp() {
         return timestamp;
     }
 

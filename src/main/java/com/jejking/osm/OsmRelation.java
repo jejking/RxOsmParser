@@ -21,11 +21,10 @@ package com.jejking.osm;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-import javax.jws.soap.SOAPBinding.Use;
-
-import com.google.common.base.Optional;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
+
+import java.util.Optional;
 
 /**
  * Value class representing a <tt>relation</tt> element in an OSM file.
@@ -79,7 +78,7 @@ public final class OsmRelation extends OsmComponent {
          * 
          * @param type type, mapped from <tt>type</tt> element
          * @param ref numerical reference, mapped from <tt>ref</tt> element
-         * @param role role, {@link Use} {@link Optional#absent()} if empty string
+         * @param role role, {@link Optional#empty()} if empty string
          */
         public Member(MemberType type, Long ref, Optional<String> role) {
             super();

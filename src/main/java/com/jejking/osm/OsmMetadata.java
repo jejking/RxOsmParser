@@ -19,9 +19,8 @@
  */
 package com.jejking.osm;
 
-import org.joda.time.DateTime;
-
-import com.google.common.base.Optional;
+import java.time.ZonedDateTime;
+import java.util.Optional;
 
 /**
  * <p>OsmMetadata interface.</p>
@@ -43,7 +42,7 @@ public interface OsmMetadata {
      *
      * @return the timestamp
      */
-    public abstract Optional<DateTime> getTimestamp();
+    public abstract Optional<ZonedDateTime> getTimestamp();
 
     /**
      * <p>getChangeset.</p>

@@ -19,10 +19,10 @@
  */
 package com.jejking.osm;
 
-import org.joda.time.DateTime;
-
-import com.google.common.base.Optional;
 import com.google.common.collect.ImmutableMap;
+
+import java.time.ZonedDateTime;
+import java.util.Optional;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
@@ -70,7 +70,7 @@ public abstract class OsmComponent implements OsmMetadata, OsmProperties {
      * @see com.jejking.osm.OsmMetadata#getTimestamp()
      * @return a {@link com.google.common.base.Optional} object.
      */
-    public final Optional<DateTime> getTimestamp() {
+    public final Optional<ZonedDateTime> getTimestamp() {
         return metadata.getTimestamp();
     }
 

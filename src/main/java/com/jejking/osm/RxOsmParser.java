@@ -20,10 +20,16 @@
 package com.jejking.osm;
 
 import static com.google.common.base.Preconditions.checkNotNull;
+import static java.time.ZoneOffset.UTC;
 
 import java.io.InputStream;
+import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Optional;
+import java.util.function.Function;
 
 import javax.xml.namespace.QName;
 import javax.xml.stream.EventFilter;
@@ -35,16 +41,9 @@ import javax.xml.stream.events.EndElement;
 import javax.xml.stream.events.StartElement;
 import javax.xml.stream.events.XMLEvent;
 
-import org.joda.time.DateTime;
-import org.joda.time.DateTimeZone;
-import org.joda.time.format.DateTimeFormat;
-import org.joda.time.format.DateTimeFormatter;
-
 import rx.Observable;
 import rx.observables.ConnectableObservable;
 
-import com.google.common.base.Function;
-import com.google.common.base.Optional;
 import com.google.common.collect.AbstractIterator;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
@@ -220,12 +219,13 @@ public class RxOsmParser  {
      */
     private static abstract class XmlEventAbstractIterator<T> extends AbstractIterator<T> {
         
-        
-        private static final class StringToDateTime implements Function<String, DateTime> {
+
+        private static final class StringToDateTime implements Function<String, ZonedDateTime> {
           //    2014-05-14T14:12:39Z
-            private static final DateTimeFormatter dateTimeFormat = DateTimeFormat.forPattern("yyyy-MM-dd'T'HH:mm:ssZ");
-            public DateTime apply(String in) {
-                return dateTimeFormat.parseDateTime(in).withZone(DateTimeZone.UTC);
+
+            private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ssX");
+            public ZonedDateTime apply(String in) {
+                return ZonedDateTime.parse(in, formatter);
             }
         }
 
@@ -273,8 +273,7 @@ public class RxOsmParser  {
          * Looks forward in the event stream - and checks if the next event (which should
          * be a start element) has the same name as was supplied to the iterator in
          * its constructor.
-         * 
-         * @param elementName
+         *
          * @return <code>true</code> if next element has same name, else <code>false</code>
          */
         private boolean nextElementHasSameName() {
@@ -310,7 +309,7 @@ public class RxOsmParser  {
         
         /**
          * Gets optional value. It may be there - or may have been filtered away. If not there,
-         * then {@link Optional#absent()} is returned.
+         * then {@link Optional#empty()} is returned.
          * 
          * @param element
          * @param name
@@ -319,7 +318,7 @@ public class RxOsmParser  {
         protected Optional<String> getOptionalAttributeFromElement(StartElement element, QName name) {
             Attribute attr = element.getAttributeByName(name);
             if (attr == null) {
-                return Optional.absent();
+                return Optional.empty();
             } else {
                 return Optional.of(attr.getValue());
             }
@@ -333,10 +332,10 @@ public class RxOsmParser  {
         protected OsmMetadata buildOsmMetaFromElement(StartElement startElement) {
             
             Long  idValue = Long.valueOf(getMandatoryAttributeFromElement(startElement, id));
-            Optional<Long> versionValue = getOptionalAttributeFromElement(startElement, version).transform(stringToLong);
-            Optional<DateTime> timestampValue = getOptionalAttributeFromElement(startElement, timestamp).transform(stringToDateTime);
-            Optional<Long> changesetValue = getOptionalAttributeFromElement(startElement, changeset).transform(stringToLong);
-            Optional<Long> uidValue = getOptionalAttributeFromElement(startElement, uid).transform(stringToLong);
+            Optional<Long> versionValue = getOptionalAttributeFromElement(startElement, version).map(stringToLong);
+            Optional<ZonedDateTime> timestampValue = getOptionalAttributeFromElement(startElement, timestamp).map(stringToDateTime);
+            Optional<Long> changesetValue = getOptionalAttributeFromElement(startElement, changeset).map(stringToLong);
+            Optional<Long> uidValue = getOptionalAttributeFromElement(startElement, uid).map(stringToLong);
             Optional<String> userValue = getOptionalAttributeFromElement(startElement, user);
             
             OsmMetadataHolder holder = new OsmMetadataHolder(idValue, 
@@ -521,7 +520,7 @@ public class RxOsmParser  {
         private Optional<String> buildRole(StartElement nodeStartElement) {
             Optional<String> roleValue = getOptionalAttributeFromElement(nodeStartElement, role);
             if (roleValue.isPresent() && roleValue.get().isEmpty()) {
-                roleValue = Optional.absent();
+                roleValue = Optional.empty();
             }
             return roleValue;
         }

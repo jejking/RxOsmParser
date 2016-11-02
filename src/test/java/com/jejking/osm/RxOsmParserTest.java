@@ -24,18 +24,13 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
-import org.joda.time.DateTime;
-import org.joda.time.DateTimeConstants;
-import org.joda.time.DateTimeZone;
 import org.junit.Test;
 
-import com.jejking.osm.OsmNode;
-import com.jejking.osm.OsmRelation;
-import com.jejking.osm.OsmWay;
-import com.jejking.osm.RxOsmParser;
+import java.time.*;
+
 
 /**
- * Tests for {@link OsmParser}.
+ * Tests for {@link RxOsmParser}.
  * 
  * @author jejking
  *
@@ -285,7 +280,7 @@ public class RxOsmParserTest {
 //        </way>
         assertEquals(Long.valueOf(3), way.getId());
         assertEquals(Long.valueOf(1), way.getVersion().get());
-        assertEquals( new DateTime(2013, DateTimeConstants.MAY, 14, 14, 12, 39, DateTimeZone.UTC), way.getTimestamp().get());
+        assertEquals(ZonedDateTime.of(LocalDateTime.of(2013, Month.MAY, 14, 14, 12, 39), ZoneOffset.UTC), way.getTimestamp().get());
         assertEquals(Long.valueOf(321), way.getChangeset().get());
         assertEquals(2, way.getNdRefs().size());
         assertTrue(way.getNdRefs().contains(Long.valueOf(1)));
@@ -315,7 +310,7 @@ public class RxOsmParserTest {
         assertEquals(Long.valueOf(1), firstNode.getChangeset().get());
         assertEquals(Long.valueOf(1), firstNode.getUid().get());
         assertEquals("foo", firstNode.getUser().get());
-        DateTime oneTimestamp = new DateTime(2014, DateTimeConstants.MAY, 14, 14, 12, 39, DateTimeZone.UTC);
+        ZonedDateTime oneTimestamp = ZonedDateTime.of(LocalDateTime.of(2014, Month.MAY, 14, 14, 12, 39), ZoneOffset.UTC);
         assertEquals(oneTimestamp, firstNode.getTimestamp().get());
         assertTrue(firstNode.getProperties().isEmpty());
     }
